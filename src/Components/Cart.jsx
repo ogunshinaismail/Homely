@@ -63,19 +63,3 @@ const Cart = ({setShowCart}) => {
 }
 
 export default Cart
-
-// {/*header*/}
-// <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-//     <h3 className="text-3xl font-semibold">Modal Title</h3>
-//     <button
-//         className="p-1 ml-auto text-primary-600 border-0 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-//         onClick={() => setShowCart(false)}
-//     >
-//         x
-//     </button>
-// </div>
-
-
-
-
-// <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
