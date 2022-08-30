@@ -4,8 +4,6 @@ export { default as HeroImg } from './Images/hero-img.svg'
 export { default as YamEgg } from './Images/yam-egg.svg'
 export { default as Spaghetti } from './Images/spaghetti.svg'
 export { default as Beans } from './Images/porridge-beans.svg'
-export { default as AboutUp } from './Images/about-us-up.svg'
-export { default as AboutDown } from './Images/about-us-down.svg'
 export { default as AboutImg } from './Images/about-image_.webp'
 
 
