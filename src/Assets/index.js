@@ -10,7 +10,7 @@ export { default as AboutImg } from './Images/about-image_.webp'
 
 
 // ICONS
-export { default as Cart } from './Icons/cart.svg'
+export { default as CartIcon } from './Icons/cart.svg'
 export { default as EasyToOrder } from './Icons/easy-to-order.svg'
 export { default as DeliveryMan } from './Icons/delivery-man.svg'
 export { default as Quality } from './Icons/quality.svg'
