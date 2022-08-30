@@ -1,3 +1,4 @@
+
 /* Signup and Login page*/
 .signup-bg {
     background-image: url(./Assets/Images/background.webp);
@@ -5,3 +6,6 @@
     background-size: cover;
     background-position: center;
 }
+/* * {
+    color: #00000078;
+} */
