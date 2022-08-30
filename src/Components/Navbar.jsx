@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { Logo, Cart, Hamburger  } from '../Assets'
+import { Logo, CartIcon, Hamburger  } from '../Assets'
+import Cart from './Cart';
 
 const Navbar = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
+    const [showCart, setShowCart] = useState(false)
   return (
     <>
       <nav className="fixed top-0 w-full flex flex-wrap items-center justify-between py-3 bg-primary-50">
@@ -56,18 +58,20 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item">
-                <button className='bg-primary-500 flex items-center gap-2 py-1 px-5 rounded-lg outline-none'>
-                    <img src={Cart} alt="" />
+                <button 
+                  className='bg-primary-500 flex items-center gap-2 py-1 px-5 rounded-lg outline-none' 
+                  onClick={() => setShowCart(true)}
+                >
+                    <img src={CartIcon} alt="" />
                     <span className="text-white">Cart</span>
                     <div className="bg-white text-black font-bold py-1 px-3 rounded-full">3</div>
                 </button>
               </li>
-
             </ul>
-
           </div>
         </div>
       </nav>
+      {showCart ? <Cart setShowCart={setShowCart} /> : null}
     </>
   );
 }
