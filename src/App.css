@@ -1,0 +1,7 @@
+/* Signup and Login page*/
+.signup-bg {
+    background-image: url(./Assets/Images/background.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
