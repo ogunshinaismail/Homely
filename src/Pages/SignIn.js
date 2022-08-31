@@ -6,13 +6,13 @@ const SignIn = () => {
     placeholder: "Enter Email",
     type: "email",
     className:
-      "w-full border border-gray-500 px-3 text-xl rounded-full h-14 outline-none mb-5",
+      "w-full border border-gray-500 px-3 text-xl rounded-lg h-14 outline-none mb-5",
   });
   const [password, passwordInput] = useInput({
     placeholder: "Enter Password",
     type: "password",
     className:
-      "w-full border border-gray-500 px-3 text-xl rounded-full h-14 outline-none mb-5",
+      "w-full border border-gray-500 px-3 text-xl rounded-lg h-14 outline-none mb-5",
   });
   console.log(password, ",", email);
   return (

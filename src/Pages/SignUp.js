@@ -6,19 +6,19 @@ const SignUp = () => {
     placeholder: "Enter Username",
     type: "text",
     className:
-      "w-full border border-gray-500 px-3 text-xl rounded-full h-14 outline-none mb-5",
+      "w-full border border-gray-500 px-3 text-xl rounded-lg h-14 outline-none mb-5",
   });
   const [email, emailInput] = useInput({
     placeholder: "Enter Email",
     type: "email",
     className:
-      "w-full border border-gray-500 px-3 text-xl rounded-full h-14 outline-none mb-5",
+      "w-full border border-gray-500 px-3 text-xl rounded-lg h-14 outline-none mb-5",
   });
   const [password, passwordInput] = useInput({
     placeholder: "Enter Password",
     type: "password",
     className:
-      "w-full border border-gray-500 px-3 text-xl rounded-full h-14 outline-none mb-5",
+      "w-full border border-gray-500 px-3 text-xl rounded-lg h-14 outline-none mb-5",
   });
 
   console.log(username, ",", email, ",", password);
@@ -30,7 +30,7 @@ const SignUp = () => {
           {usernameInput}
           {emailInput}
           {passwordInput}
-          <button className="w-full bg-primary-500 border-0 px-3 text-xl text-center text-white rounded-full h-14 outline-none cursor-pointer">
+          <button className="w-full bg-primary-500 border-0 px-3 text-xl text-center text-white rounded-lg h-14 outline-none cursor-pointer">
             Signup
           </button>
         </form>

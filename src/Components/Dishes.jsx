@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { YamEgg, Spaghetti, Beans } from '../Assets'
 
 const Dishes = () => {
-    const [quantity, setQuantity] = useState(1)
-
     const dishes = [
         {
             "id": 1,
@@ -43,6 +41,19 @@ const Dishes = () => {
         },
     ]
 
+    const room = []
+
+    const [quantity, setQuantity] = useState([...room])
+
+    const handleroom = (e, id) => {
+        const { value } = e.target;
+        setQuantity((room) =>
+          room?.map((list, index) =>
+            index === id ? { ...list, room: value } : list
+          )
+        );
+      };
+
   return (
     <>
         <div className="lg:w-10/12 mx-auto mt-24">
@@ -50,7 +61,7 @@ const Dishes = () => {
             <p className="text-center text-lg">Check out recomended dishes of your choice</p>
 
             <div className="grid lg:grid-cols-3 my-10">
-                {dishes.map( dish => (
+                {dishes.map( (dish, i) => (
                     <div className="flex flex-col items-center gap-5 border border-b-orange-500 lg:border-primary-500 py-10 lg:p-10" key={dish.id}>
                         <img src={dish.img} alt="" className='w-[250px]' />
                         <p className="font-semibold text-2xl">{dish.name}</p>
@@ -58,11 +69,12 @@ const Dishes = () => {
                         <div className="flex items-center gap-32 lg:gap-10">
                             <p className='font-medium text-2xl'>₦{dish.price}</p>
                             <div className="flex items-center">
-                                <input 
+                                <input
+                                    name={quantity}
                                     type="number" 
                                     className='w-16 mr-[-10px] border border-primary-500 px-2 rounded-md'
                                     value={quantity}
-                                    onChange={e => setQuantity(e.target.value)} />
+                                    onChange={e => handleroom(e, i)} />
                                 <button className='bg-primary-600 px-8 py-2 text-white rounded-lg'> + Add</button>
                             </div>
                         </div>
