@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
-import { YamEgg } from '../Assets'
+import React, { useContext } from 'react'
+import CartContext from '../Context/CartContext'
 
 const Cart = ({setShowCart}) => {
-    const [counter, setCounter] = useState(1)
-    if (counter <= 0) {
-        setCounter(1)
-    }
+    const { items } = useContext(CartContext)
   return (
     <>
         <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-[#00000078]">
@@ -14,32 +11,26 @@ const Cart = ({setShowCart}) => {
                 {/*content*/}
                 <div className="border-0 rounded-lg w-[800px] relative flex flex-col bg-white outline-none focus:outline-none">
                     {/*body*/}
-                    <div className="w-full relative p-6 flex items-center justify-between">
-                        <div className="flex items-center gap-5">
-                            <img src={YamEgg} alt="" className='w-[150px]' />
-                            <div className="flex flex-col gap-3">
-                                <h1 className="font-medium text-2xl">Yam and egg sauce</h1>
-                                <div className="flex items-center gap-8">
-                                    <h1 className='font-medium text-lg text-primary-600'>₦3500.00</h1>
-                                    <p className="border border-gray-300 py-1 px-2 rounded-md">x{counter}</p>
+                    <div className=" relative overflow-y-scroll max-h-72 px-5">
+                        {items.map(item => (
+                            <div className="w-full relative p-6 flex items-center justify-between border-b-[3px] border-primary-500" key={item.id}>
+                                <div className="flex items-center gap-5">
+                                    <img src={item.img} alt="" className='w-[150px]' />
+                                    <div className="flex flex-col gap-3">
+                                        <h1 className="font-medium text-2xl">{item.name}</h1>
+                                        <div className="flex items-center gap-8">
+                                            <h1 className='font-medium text-lg text-primary-600'>₦{item.price}</h1>
+                                            <p className="border border-gray-300 py-1 px-2 rounded-md">x{item.quantity}</p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div className="flex items-center gap-4">
+                                    <p className="border border-primary-600 font-medium text-primary-500 py-[1px] px-2 rounded-md text-2xl">-</p>
+                                    <p className="border border-primary-600 font-medium text-primary-500 py-[1px] px-2 rounded-md text-2xl">+</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="flex items-center gap-4">
-                            <p 
-                                className="border border-primary-600 font-medium text-primary-500 py-[1px] px-2 rounded-md text-2xl cursor-pointer"
-                                onClick={() => setCounter(counter - 1)}
-                            >
-                                -
-                            </p>
-                            <p 
-                                className="border border-primary-600 font-medium text-primary-500 py-[1px] px-2 rounded-md text-2xl cursor-pointer"
-                                onClick={() => setCounter(counter + 1)}
-                            >
-                                +
-                            </p>
-                        </div>
+                        ))}
                     </div>
 
                     {/*footer*/}
