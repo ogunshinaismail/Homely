@@ -69,7 +69,7 @@ const Navbar = () => {
                 >
                     <img src={CartIcon} alt="" />
                     <span className="text-white">Cart</span>
-                    <div className="bg-white text-black font-bold py-1 px-3 rounded-full">{cart.length}</div>
+                    <div className="bg-pink-50 text-black font-bold py-1 px-3 rounded-full">{cart.length}</div>
                 </button>
               </li>
             </ul>

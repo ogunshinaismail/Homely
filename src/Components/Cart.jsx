@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-// import CartContext from '../Context/CartContext'
 import { CartState } from '../Context/Context'
+import { Trash } from '../Assets'
 
 const Cart = ({setShowCart}) => {
-    // const { items } = useContext(CartContext)
     const { state: { cart }, dispatch } = CartState()
     const [total, setTotal] = useState()
 
@@ -49,16 +48,15 @@ const Cart = ({setShowCart}) => {
                                         </div>
                                     </div>
             
-                                    <div className="flex flex-col items-end gap-2">
+                                    <div className="flex items-end">
                                         <button 
-                                            className="text-2xl text-primary-500 font-bold"
                                             onClick={() => {
                                                 dispatch({
                                                     type: "REMOVE_FROM_CART",
                                                     payload: item
                                                 })
                                         }}>
-                                            X
+                                            <img src={Trash} alt="" />
                                         </button>
                                     </div>
                                 </div>
