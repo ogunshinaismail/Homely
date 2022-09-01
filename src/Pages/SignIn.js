@@ -22,7 +22,7 @@ const SignIn = () => {
         <form className="w-full mt-7">
           {emailInput}
           {passwordInput}
-          <button className="w-full bg-primary-500 border-0 px-3 text-xl text-center text-white rounded-full h-14 outline-none cursor-pointer">
+          <button className="w-full bg-primary-500 border-0 px-3 text-xl text-center text-white rounded-lg h-14 outline-none cursor-pointer">
             Signup
           </button>
         </form>
