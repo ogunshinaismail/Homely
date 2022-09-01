@@ -1,63 +1,59 @@
-import { createContext,   useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { YamEgg, Spaghetti, Beans } from '../Assets'
+import { cartReducer } from "./Reducer";
 
-const CartContext = createContext();
+const Cart = createContext();
 
-export function CartProvider({children}) {
+const Context = ({children}) => {
     const dishes = [
         {
             "id": 1,
             "name": "Yam and egg sauce",
             "img": YamEgg,
             "price": 1500.00,
-            "quantity": 3
         },
         {
             "id": 2,
             "name": "Spag and pepper sauce",
             "img": Spaghetti,
             "price": 1200.00,
-            "quantity": 1
         },
         {
             "id": 3,
             "name": "Porridge beans",
             "img": Beans,
             "price": 1400.00,
-            "quantity": 1
         },
         {
             "id": 4,
             "name": "Yam and egg sauce",
             "img": YamEgg,
             "price": 1100.00,
-            "quantity": 1
         },
         {
             "id": 5,
             "name": "Spag and pepper sauce",
             "img": Spaghetti,
             "price": 1600.00,
-            "quantity": 1
         },
         {
             "id": 6,
             "name": "Porridge beans",
             "img": Beans,
             "price": 900.00,
-            "quantity": 1
         },
     ]
 
-    const [items, setItems] = useState([])
-    
-    const addToCart = (id, name, img, price, quantity) => {
-        setItems((prevState) => [...prevState, {id, name, img, price, quantity}])
-    }
+    const [state, dispatch] = useReducer(cartReducer, {
+        products: dishes,
+        cart: []
+    })
 
-    return (
-        <CartContext.Provider value={{dishes, items, addToCart}}>{children}</CartContext.Provider>
-    )
+    return <Cart.Provider value={{state, dispatch}}>{children}</Cart.Provider>
 }
 
-export default CartContext
+export default Context;
+
+export const CartState = () => {
+    return useContext(Cart);
+}

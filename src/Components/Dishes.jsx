@@ -1,25 +1,15 @@
-import React, { useContext, useState } from 'react'
-import CartContext from '../Context/CartContext'
+import React from 'react'
+// import CartContext from '../Context/CartContext'
+import { CartState } from '../Context/Context'
 
 const Dishes = () => {
-    const { dishes, addToCart } = useContext(CartContext)
-
-    const handleChange = e => {
-        setQuantity(e.target.value)
-    }   
-
-    const room = []
-
-    const [quantity, setQuantity] = useState([...room])
-
-    const handleroom = (e, id) => {
-        const { value } = e.target;
-        setQuantity((room) =>
-          room?.map((list, index) =>
-            index === id ? { ...list, room: value } : list
-          )
-        );
-      };
+    const { 
+        state: { products, cart },
+        dispatch, 
+    } = CartState();
+    
+    // console.log(cart, products);
+    // const { dishes, addToCart } = useContext(CartContext) 
 
   return (
     <>
@@ -28,21 +18,42 @@ const Dishes = () => {
             <p className="text-center text-lg">Check out recomended dishes of your choice</p>
 
             <div className="grid lg:grid-cols-3 my-10">
-                {dishes.map( (dish, i) => (
+                {products.map( (dish, i) => (
                     <div className="flex flex-col items-center gap-5 border border-b-orange-500 lg:border-primary-500 py-10 lg:p-10" key={dish.id}>
                         <img src={dish.img} alt="" className='w-[250px]' />
-                        <p className="font-semibold text-2xl">{dish.name}</p>
+                        <p className="font-semibold text-2xl lg:text-2xl">{dish.name}</p>
 
                         <div className="flex items-center gap-32 lg:gap-10">
                             <p className='font-medium text-2xl'>₦{dish.price}</p>
                             <div className="flex items-center">
-                                <input
-                                    name={quantity}
-                                    type="number" 
-                                    className='w-16 mr-[-10px] border border-primary-500 px-2 rounded-md outline-primary-500'
-                                    value={dish.quantity}
-                                    onChange={() => handleChange} />
-                                <button className='bg-primary-600 px-8 py-2 text-white rounded-lg' onClick={() => addToCart(dish.id, dish.name, dish.img, dish.price, dish.quantity)}> + Add</button>
+                                
+                                {cart.some( (p) => p.id === dish.id) ? (
+                                        <button 
+                                            className='bg-white border border-primary-600 px-2 md:px-4 py-2 text-primary-600 font-medium rounded-lg'
+                                            onClick={() => {
+                                                dispatch({
+                                                    type: "REMOVE_FROM_CART",
+                                                    payload: dish
+                                                })
+                                            }}
+                                        > 
+                                            - Remove
+                                        </button>
+                                    ) : (
+
+                                    <button 
+                                        className='bg-primary-600 px-8 md:px-4 py-2 text-white rounded-lg'
+                                        onClick={() => {
+                                            dispatch({
+                                                type: 'ADD_TO_CART',
+                                                payload: dish
+                                            })
+                                        }}
+                                    > 
+                                        + Add
+                                    </button>
+                                )}
+                                
                             </div>
                         </div>
                     </div>
@@ -54,3 +65,5 @@ const Dishes = () => {
 }
 
 export default Dishes
+
+// <button className='bg-primary-600 px-8 py-2 text-white rounded-lg' onClick={() => addToCart(dish.id, dish.name, dish.img, dish.price, dish.quantity)}> + Add</button>
