@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { Logo, CartIcon, Hamburger  } from '../Assets'
 import Cart from './Cart';
+// import CartContext from '../Context/CartContext';
+import { CartState } from '../Context/Context';
 
 const Navbar = () => {
+  const { state: { cart } } = CartState()
+  console.log(cart)
+    // const { items } = useContext(CartContext)
     const [navbarOpen, setNavbarOpen] = useState(false);
     const [showCart, setShowCart] = useState(false)
   return (
@@ -64,7 +69,7 @@ const Navbar = () => {
                 >
                     <img src={CartIcon} alt="" />
                     <span className="text-white">Cart</span>
-                    <div className="bg-white text-black font-bold py-1 px-3 rounded-full">3</div>
+                    <div className="bg-pink-50 text-black font-bold py-1 px-3 rounded-full">{cart.length}</div>
                 </button>
               </li>
             </ul>

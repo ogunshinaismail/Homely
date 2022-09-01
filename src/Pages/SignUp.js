@@ -9,21 +9,21 @@ const SignUp = () => {
     type: "text",
     name: "name",
     id: "name",
-    className: `w-full border-0 px-3 text-xl rounded-full h-full outline-none`,
+    className: `w-full border-0 px-3 text-xl rounded-lg h-full outline-none`,
   });
   const emailInput = useInput({
     placeholder: "Enter Email",
     type: "email",
     name: "email",
     id: "email",
-    className: `w-full border-0 px-3 text-xl rounded-full h-full outline-none`,
+    className: `w-full border-0 px-3 text-xl rounded-lg h-full outline-none`,
   });
   const passwordInput = useInput({
     placeholder: "Enter Password",
     type: "password",
     name: "password",
     id: "password",
-    className: `w-full border-0 px-3 text-xl rounded-full h-full outline-none`,
+    className: `w-full border-0 px-3 text-xl rounded-lg h-full outline-none`,
   });
 
   const signUpSchema = yup.object().shape({
@@ -61,7 +61,7 @@ const SignUp = () => {
               <Form className="w-full mt-7">
                 <div className="w-full px-3 mb-5">
                   <div
-                    className={`w-full border rounded-full h-14 mb-2 ${
+                    className={`w-full border rounded-lg h-14 mb-2 ${
                       errors.name && touched.name
                         ? "border-red-500"
                         : "border-gray-500"
@@ -79,7 +79,7 @@ const SignUp = () => {
 
                 <div className="w-full px-3 mb-5">
                   <div
-                    className={`w-full border rounded-full h-14 mb-2 ${
+                    className={`w-full border rounded-lg h-14 mb-2 ${
                       errors.email && touched.email
                         ? "border-red-500"
                         : "border-gray-500"
@@ -97,7 +97,7 @@ const SignUp = () => {
 
                 <div className="w-full px-3 mb-5">
                   <div
-                    className={`w-full border rounded-full h-14 mb-2 ${
+                    className={`w-full border rounded-lg h-14 mb-2 ${
                       errors.password && touched.password
                         ? "border-red-500"
                         : "border-gray-500"
@@ -114,7 +114,7 @@ const SignUp = () => {
 
                 <button
                   type="submit"
-                  className={`w-full bg-primary-500 border-0 px-3 text-xl text-center text-white rounded-full h-14 outline-none cursor-pointer`}
+                  className={`w-full bg-primary-500 border-0 px-3 text-xl text-center text-white rounded-lg h-14 outline-none cursor-pointer`}
                 >
                   Sign Up
                 </button>
