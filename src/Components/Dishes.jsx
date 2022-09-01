@@ -1,47 +1,15 @@
-import React, { useState } from 'react'
-import { YamEgg, Spaghetti, Beans } from '../Assets'
+import React, { useContext, useState } from 'react'
+// import { YamEgg, Spaghetti, Beans } from '../Assets'
+import CartContext from '../Context/CartContext'
 
 const Dishes = () => {
-    const [quantity, setQuantity] = useState(1)
+    const [quantity, setQuantity] = useState([])
 
-    const dishes = [
-        {
-            "id": 1,
-            "name": "Yam and egg sauce",
-            "img": YamEgg,
-            "price": 1500.00
-        },
-        {
-            "id": 2,
-            "name": "Spag and pepper sauce",
-            "img": Spaghetti,
-            "price": 1200.00
-        },
-        {
-            "id": 3,
-            "name": "Porridge beans",
-            "img": Beans,
-            "price": 1400.00
-        },
-        {
-            "id": 4,
-            "name": "Yam and egg sauce",
-            "img": YamEgg,
-            "price": 1100.00
-        },
-        {
-            "id": 5,
-            "name": "Spag and pepper sauce",
-            "img": Spaghetti,
-            "price": 1600.00
-        },
-        {
-            "id": 6,
-            "name": "Porridge beans",
-            "img": Beans,
-            "price": 900.00
-        },
-    ]
+    const { dishes, addToCart } = useContext(CartContext)
+
+    const handleChange = e => {
+        setQuantity(e.target.value)
+    }
 
   return (
     <>
@@ -60,10 +28,10 @@ const Dishes = () => {
                             <div className="flex items-center">
                                 <input 
                                     type="number" 
-                                    className='w-16 mr-[-10px] border border-primary-500 px-2 rounded-md'
-                                    value={quantity}
-                                    onChange={e => setQuantity(e.target.value)} />
-                                <button className='bg-primary-600 px-8 py-2 text-white rounded-lg'> + Add</button>
+                                    className='w-16 mr-[-10px] border border-primary-500 px-2 rounded-md outline-primary-500'
+                                    value={dish.quantity}
+                                    onChange={() => handleChange} />
+                                <button className='bg-primary-600 px-8 py-2 text-white rounded-lg' onClick={() => addToCart(dish.id, dish.name, dish.img, dish.price, dish.quantity)}> + Add</button>
                             </div>
                         </div>
                     </div>
