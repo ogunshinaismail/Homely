@@ -1,41 +1,129 @@
 import React from "react";
-import useInput from "../Hooks/UseInput";
+import { Formik, Form, ErrorMessage } from "formik";
+import * as yup from "yup";
+import useInput from "../Hooks/FormikInput";
 
 const SignUp = () => {
-  const [username, usernameInput] = useInput({
+  const usernameInput = useInput({
     placeholder: "Enter Username",
     type: "text",
-    className:
-      "w-full border border-gray-500 px-3 text-xl rounded-lg h-14 outline-none mb-5",
+    name: "name",
+    id: "name",
+    className: `w-full border-0 px-3 text-xl rounded-lg h-full outline-none`,
   });
-  const [email, emailInput] = useInput({
+  const emailInput = useInput({
     placeholder: "Enter Email",
     type: "email",
-    className:
-      "w-full border border-gray-500 px-3 text-xl rounded-lg h-14 outline-none mb-5",
+    name: "email",
+    id: "email",
+    className: `w-full border-0 px-3 text-xl rounded-lg h-full outline-none`,
   });
-  const [password, passwordInput] = useInput({
+  const passwordInput = useInput({
     placeholder: "Enter Password",
     type: "password",
-    className:
-      "w-full border border-gray-500 px-3 text-xl rounded-lg h-14 outline-none mb-5",
+    name: "password",
+    id: "password",
+    className: `w-full border-0 px-3 text-xl rounded-lg h-full outline-none`,
   });
 
-  console.log(username, ",", email, ",", password);
+  const signUpSchema = yup.object().shape({
+    name: yup
+      .string()
+      .required("UserName is required")
+      .min(3, "UserName is too short - should be 3 chars min")
+      .max(14, "UserName is too long - should be 14 chars max"),
+    email: yup.string().email().required("Email is required"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(4, "Password is too short - should be 4 chars min"),
+  });
+
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+  };
   return (
-    <div className="w-full h-screen signup-bg flex items-center justify-center">
-      <div className="md:w-96 w-11/12 bg-white rounded py-8 md:px-7 px-4">
-        <h3 className="text-2xl text-center font-bold">Signup</h3>
-        <form className="w-full mt-7">
-          {usernameInput}
-          {emailInput}
-          {passwordInput}
-          <button className="w-full bg-primary-500 border-0 px-3 text-xl text-center text-white rounded-lg h-14 outline-none cursor-pointer">
-            Signup
-          </button>
-        </form>
-      </div>
-    </div>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={signUpSchema}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      {(formik) => {
+        const { errors, touched } = formik;
+        return (
+          <div className="w-full h-screen signup-bg flex items-center justify-center">
+            <div className="md:w-96 w-11/12 bg-white rounded py-8 md:px-7 px-4">
+              <h3 className="text-2xl text-center font-bold">Signup</h3>
+              <Form className="w-full mt-7">
+                <div className="w-full px-3 mb-5">
+                  <div
+                    className={`w-full border rounded-lg h-14 mb-2 ${
+                      errors.name && touched.name
+                        ? "border-red-500"
+                        : "border-gray-500"
+                    }`}
+                  >
+                    {usernameInput}
+                  </div>
+
+                  <ErrorMessage
+                    name="name"
+                    component="span"
+                    className="error text-red-500 text-lg italic"
+                  />
+                </div>
+
+                <div className="w-full px-3 mb-5">
+                  <div
+                    className={`w-full border rounded-lg h-14 mb-2 ${
+                      errors.email && touched.email
+                        ? "border-red-500"
+                        : "border-gray-500"
+                    }`}
+                  >
+                    {emailInput}
+                  </div>
+
+                  <ErrorMessage
+                    name="email"
+                    component="span"
+                    className="error text-red-500 text-lg italic"
+                  />
+                </div>
+
+                <div className="w-full px-3 mb-5">
+                  <div
+                    className={`w-full border rounded-lg h-14 mb-2 ${
+                      errors.password && touched.password
+                        ? "border-red-500"
+                        : "border-gray-500"
+                    }`}
+                  >
+                    {passwordInput}
+                  </div>
+                  <ErrorMessage
+                    name="password"
+                    component="span"
+                    className="error text-red-500 text-lg italic"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className={`w-full bg-primary-500 border-0 px-3 text-xl text-center text-white rounded-lg h-14 outline-none cursor-pointer`}
+                >
+                  Sign Up
+                </button>
+              </Form>
+            </div>
+          </div>
+        );
+      }}
+    </Formik>
   );
 };
 
