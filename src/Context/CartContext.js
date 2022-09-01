@@ -1,4 +1,4 @@
-import { createContext,  useEffect,  useState } from "react";
+import { createContext,   useState } from "react";
 import { YamEgg, Spaghetti, Beans } from '../Assets'
 
 const CartContext = createContext();

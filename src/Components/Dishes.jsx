@@ -2,8 +2,6 @@ import React, { useContext, useState } from 'react'
 import CartContext from '../Context/CartContext'
 
 const Dishes = () => {
-    const [quantity, setQuantity] = useState([])
-
     const { dishes, addToCart } = useContext(CartContext)
 
     const handleChange = e => {
