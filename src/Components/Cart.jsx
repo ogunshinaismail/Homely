@@ -19,9 +19,9 @@ const Cart = ({setShowCart}) => {
                 <div className="border-0 rounded-lg lg:w-[800px] md:w-[600px] relative flex flex-col bg-white outline-none focus:outline-none">
                     {/*body*/}
                     {cart.length > 0 ? (
-                        <div className="relative overflow-y-scroll max-h-72 px-5 my-5">
+                        <div className="relative overflow-y-scroll scroll-smooth max-h-72 px-5 my-5">
                             {cart.map(item => (
-                                <div className="w-full relative p-6 flex items-center gap-10 justify-between border-b border-primary-500" key={item.id}>
+                                <div className="w-full relative p-6 flex items-center gap-10 justify-between border-b last:border-none border-primary-500" key={item.id}>
                                     <div className="flex items-center gap-5">
                                         <img src={item.img} alt="" className='w-[70px] lg:w-[150px]' />
                                         <div className="flex flex-col gap-3">
@@ -68,14 +68,14 @@ const Cart = ({setShowCart}) => {
                     
 
                     {/*footer*/}
-                    <div className="m-6 py-6 border-t-2 border-primary-600">
+                    <div className="mt-6 mx-6 py-6 border-t-2 border-primary-600">
                         <div className="flex items-center justify-between">
                             <p className='font-bold text-2xl'>Total Amount</p>
-                            <p className='font-bold text-2xl'>₦{total}</p>
+                            <p className='font-bold text-2xl'>₦{total + ".00"}</p>
                         </div>
                         <div className="flex items-center justify-end mt-6">
                             <button
-                            className="border border-primary-600 px-10 py-2 text-primary-500 rounded-md mr-3"
+                            className="border border-primary-600 px-10 py-2 text-primary-500 rounded-md mr-3 hover:bg-primary-600 hover:border-none hover:text-white"
                             type="button"
                             onClick={() => setShowCart(false)}
                             >
