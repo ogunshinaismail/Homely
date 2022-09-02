@@ -1,5 +1,4 @@
 import React from 'react'
-// import CartContext from '../Context/CartContext'
 import { CartState } from '../Context/Context'
 
 const Dishes = () => {
@@ -7,9 +6,6 @@ const Dishes = () => {
         state: { products, cart },
         dispatch, 
     } = CartState();
-    
-    // console.log(cart, products);
-    // const { dishes, addToCart } = useContext(CartContext) 
 
   return (
     <>
