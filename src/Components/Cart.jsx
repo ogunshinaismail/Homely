@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { CartState } from '../Context/Context'
 import { Trash } from '../Assets'
+import OrderCOmplete from './OrderComplete'
 
 const Cart = ({setShowCart}) => {
     const { state: { cart }, dispatch } = CartState()
     const [total, setTotal] = useState()
+    const [showOderComplete, setShowOderComplete] = useState(false)
 
     useEffect(() => {
       setTotal(cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0));
@@ -84,10 +86,13 @@ const Cart = ({setShowCart}) => {
                             >
                                 Close
                             </button>
+
                             <button
                                 className="bg-primary-600 px-10 py-2 text-white rounded-md"
                                 type="button"
-                                onClick={() => setShowCart(false)}
+                                onClick={() => {
+                                    setShowOderComplete(true)
+                                }}
                                 disabled={cart.length === 0}
                             >
                                 Order
@@ -99,8 +104,8 @@ const Cart = ({setShowCart}) => {
 
             </div>
         </div>
-
         
+        {showOderComplete ? <OrderCOmplete setShowOderComplete={setShowOderComplete} setShowCart={setShowCart} /> : null}
     </>
   )
 }
