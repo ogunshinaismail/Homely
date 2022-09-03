@@ -18,7 +18,7 @@ const Cart = ({setShowCart}) => {
             <div className="relative w-auto my-6 mx-auto">
 
                 {/*content*/}
-                <div className="border-0 rounded-lg lg:w-[800px] md:w-[600px] relative flex flex-col bg-white outline-none focus:outline-none">
+                <div className="border-0 rounded-lg w-11/12 mx-auto lg:w-[800px] md:w-[600px] relative flex flex-col bg-white outline-none focus:outline-none">
                     {/*body*/}
                     {cart.length > 0 ? (
                         <div className="relative overflow-y-scroll scroll-smooth max-h-72 px-5 my-5">
