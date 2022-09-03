@@ -35,6 +35,7 @@ const Cart = ({setShowCart}) => {
                                                     <input 
                                                         className="border border-gray-300 outline-primary-300 px-1 lg:py-1 lg:px-2 rounded-md w-10 lg:w-16" type="number" 
                                                         value={item.qty}
+                                                        min="1"
                                                         onChange={(e) => {
                                                             if (item.qty.value < 1) {
                                                                 item.qty.value = 1
