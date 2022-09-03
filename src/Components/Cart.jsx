@@ -27,13 +27,16 @@ const Cart = ({setShowCart}) => {
                                         <div className="flex flex-col gap-3">
                                             <h1 className="font-medium lg:text-2xl">{item.name}</h1>
                                             <div className="flex items-center gap-3 lg:gap-8">
-                                                <h1 className='font-medium text-sm text-sm lg:text-lg text-primary-600'>₦{item.price}</h1>
+                                                <h1 className='font-medium text-sm lg:text-lg text-primary-600'>₦{item.price}</h1>
                                                 <div className="flex items-center gap-3">
                                                     <p className="text-sm lg:text-lg">QTY</p>
                                                     <input 
                                                         className="border border-gray-300 outline-primary-300 px-1 lg:py-1 lg:px-2 rounded-md w-10 lg:w-16" type="number" 
                                                         value={item.qty}
                                                         onChange={(e) => {
+                                                            if (item.qty.value < 1) {
+                                                                item.qty.value = 1
+                                                            }
                                                             dispatch({
                                                                 type: "CHANGE_CART_QTY",
                                                                 payload: {

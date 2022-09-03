@@ -4,7 +4,7 @@ import { EasyToOrder, DeliveryMan, Quality } from '../Assets'
 const WhyChooseUs = () => {
   return (
     <>
-        <div className="w-full px-5 lg:w-10/12 lg:mx-auto my-16">
+        <div className="w-full px-5 lg:w-10/12 lg:mx-auto my-16" id='whychooseus'>
             <h1 className="text-primary-500 text-center font-bold text-3xl">Why choose us</h1>
             <p className="text-center text-lg">This is what makes our product different</p>
 
