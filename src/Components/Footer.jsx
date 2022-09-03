@@ -11,6 +11,7 @@ const Footer = () => {
                 <div>
                     <img src={Logo} alt="" />
                     <p className='text-white w-10/12 md:w-8/12 mt-6 lg:w-full lg:mt-4 gap-2'>Solution for easy and flexible getting meals for the household.You can trust us anywhere through this platform</p>
+                    <p className='text-white mt-4 hidden lg:block'>©2022 Made with  by Ismail and Muiz</p>
                 </div>
                 <div className='lg:relative flex flex-col lg:items-center'>
                     <h1 className="text-3xl font-medium text-white lg:absolute lg:left-[6.7rem] ">About</h1>
@@ -24,13 +25,13 @@ const Footer = () => {
                 <div className='flex flex-col lg:items-center'>
                     <h1 className="text-3xl font-medium text-white">Social</h1>
                     <div className="flex gap-8 mt-4 lg:flex-col ">
-                        <img src={Instagram} alt="" />
-                        <img src={Twitter} alt="" />
-                        <img src={Facebook} alt="" />
+                        <img src={Instagram} alt="" className='w-[23px]' />
+                        <img src={Twitter} alt="" className='w-[23px]' />
+                        <img src={Facebook} alt="" className='w-[18px]' />
                     </div>
                 </div>
             </div>
-            <p className='text-center text-md text-white mt-10 lg:text-left w-10/12 mx-auto lg:absolute lg:top-[10.8rem] lg:left-[7rem]'>©2022 Made with  by Ismail and Muiz</p>
+            <p className='text-center text-md text-white mt-16 block lg:hidden'>©2022 Made with  by Ismail and Muiz</p>
         </div>
     </>
   )

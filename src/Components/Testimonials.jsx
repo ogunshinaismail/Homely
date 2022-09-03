@@ -2,7 +2,7 @@ import React from 'react'
 
 const Testimonials = () => {
   return (
-    <>
+    <div id='testimonials'>
         <div className="w-11/12 lg:w-10/12 mx-auto my-24">
             <h1 className="text-primary-500 text-center font-bold text-4xl">Testimonials</h1>
             <p className="text-center text-md text-gray-700 lg:text-lg">This is what our client are saying</p>
@@ -25,7 +25,7 @@ const Testimonials = () => {
                 </div>
             </div>
         </div>
-    </>
+    </div>
   )
 }
 
