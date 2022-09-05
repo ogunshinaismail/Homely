@@ -95,7 +95,7 @@ const Navbar = () => {
               {user && (
                 <li className="nav-item">
                   <button
-                    className="bg-primary-500 flex items-center gap-2 py-1 px-5 rounded-lg outline-none"
+                    className="bg-primary-600 flex items-center gap-2 py-1 px-5 rounded-lg outline-none"
                     onClick={() => setShowCart(true)}
                   >
                     <img src={CartIcon} alt="" />
