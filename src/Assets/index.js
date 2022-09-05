@@ -21,3 +21,4 @@ export { default as Instagram } from "./Icons/instagram.svg";
 export { default as Twitter } from "./Icons/twitter.svg";
 export { default as Facebook } from "./Icons/facebook.svg";
 export { default as User } from "./Icons/user.svg";
+export { default as Done } from "./Icons/done.svg";

@@ -30,7 +30,7 @@ const Dishes = () => {
     }, [user])
 
   return (
-    <>
+    <div id='dishes'>
         <div className="lg:w-10/12 mx-auto mt-24">
             <h1 className="text-primary-500 text-center font-bold text-3xl">Our daily dishes</h1>
             <p className="text-center text-lg">Check out recomended dishes of your choice</p>
@@ -78,7 +78,7 @@ const Dishes = () => {
                 ))}
             </div>
         </div>
-    </>
+    </div>
   )
 }
 

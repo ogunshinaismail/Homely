@@ -8,13 +8,18 @@ export const cartReducer = (state, action) => {
         case "REMOVE_FROM_CART":
             return { 
                     ...state, 
-                    cart:state.cart.filter( c => c.id !== action.payload.id )
+                    cart: state.cart.filter( c => c.id !== action.payload.id )
                 };
         case "CHANGE_CART_QTY":
             return {
                     ...state, 
-                    cart:state.cart.filter( c => c.id === action.payload.id?c.qty=action.payload.qty:c.qty)
+                    cart: state.cart.filter( c => c.id === action.payload.id?c.qty=action.payload.qty:c.qty)
                 };
+        case "ON_DELETE_ALL_ITEMS_FROM_CART":
+            return {
+                ...state,
+                cart: []
+            }
         default:
             return state;
     }

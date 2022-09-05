@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { CartState } from '../Context/Context'
 import { Trash } from '../Assets'
+import OrderCOmplete from './OrderComplete'
 
 const Cart = ({setShowCart}) => {
     const { state: { cart }, dispatch } = CartState()
     const [total, setTotal] = useState()
+    const [showOderComplete, setShowOderComplete] = useState(false)
 
     useEffect(() => {
       setTotal(cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0));
@@ -16,7 +18,7 @@ const Cart = ({setShowCart}) => {
             <div className="relative w-auto my-6 mx-auto">
 
                 {/*content*/}
-                <div className="border-0 rounded-lg lg:w-[800px] md:w-[600px] relative flex flex-col bg-white outline-none focus:outline-none">
+                <div className="border-0 rounded-lg w-11/12 mx-auto lg:w-[800px] md:w-[600px] relative flex flex-col bg-white outline-none focus:outline-none">
                     {/*body*/}
                     {cart.length > 0 ? (
                         <div className="relative overflow-y-scroll scroll-smooth max-h-72 px-5 my-5">
@@ -27,13 +29,17 @@ const Cart = ({setShowCart}) => {
                                         <div className="flex flex-col gap-3">
                                             <h1 className="font-medium lg:text-2xl">{item.name}</h1>
                                             <div className="flex items-center gap-3 lg:gap-8">
-                                                <h1 className='font-medium text-sm text-sm lg:text-lg text-primary-600'>₦{item.price}</h1>
+                                                <h1 className='font-medium text-sm lg:text-lg text-primary-600'>₦{item.price}</h1>
                                                 <div className="flex items-center gap-3">
                                                     <p className="text-sm lg:text-lg">QTY</p>
                                                     <input 
                                                         className="border border-gray-300 outline-primary-300 px-1 lg:py-1 lg:px-2 rounded-md w-10 lg:w-16" type="number" 
                                                         value={item.qty}
+                                                        min="1"
                                                         onChange={(e) => {
+                                                            if (item.qty.value < 1) {
+                                                                item.qty.value = 1
+                                                            }
                                                             dispatch({
                                                                 type: "CHANGE_CART_QTY",
                                                                 payload: {
@@ -81,10 +87,13 @@ const Cart = ({setShowCart}) => {
                             >
                                 Close
                             </button>
+
                             <button
                                 className="bg-primary-600 px-10 py-2 text-white rounded-md"
                                 type="button"
-                                onClick={() => setShowCart(false)}
+                                onClick={() => {
+                                    setShowOderComplete(true)
+                                }}
                                 disabled={cart.length === 0}
                             >
                                 Order
@@ -96,8 +105,8 @@ const Cart = ({setShowCart}) => {
 
             </div>
         </div>
-
         
+        {showOderComplete ? <OrderCOmplete setShowOderComplete={setShowOderComplete} setShowCart={setShowCart} /> : null}
     </>
   )
 }
