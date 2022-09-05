@@ -9,15 +9,17 @@ import Navbar from '../Components/Navbar'
 import Newsletter from '../Components/Newsletter'
 import Testimonials from '../Components/Testimonials'
 import WhyChooseUs from '../Components/WhyChooseUs'
+import { useAuthContext } from '../Hooks/useAuthContext'
 
 const Home = () => {
+  const { user } = useAuthContext()
   return (
     <div>
         <Navbar />
         <Hero />
         <Counter />
         <WhyChooseUs />
-        <Dishes />
+        {user && <Dishes />}
         <AboutUs />
         <GetOurApp />
         <Testimonials />

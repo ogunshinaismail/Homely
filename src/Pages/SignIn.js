@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import useInput from "../Hooks/FormikInput";
+import { useLogin } from "../Hooks/useLogin";
 
 const Signin = () => {
   const emailInput = useInput({
@@ -26,6 +27,8 @@ const Signin = () => {
       .min(4, "Password is too short - should be 4 chars min"),
   });
 
+  const {login, error, isLoading} = useLogin()
+
   const initialValues = {
     email: "",
     password: "",
@@ -37,6 +40,7 @@ const Signin = () => {
       validationSchema={signInSchema}
       onSubmit={(values) => {
         console.log(values);
+        login(values.email, values.password)
       }}
     >
       {(formik) => {
@@ -89,10 +93,11 @@ const Signin = () => {
                         ? "opacity-50 cursor-not-allowed"
                         : "cursor-pointer"
                     }`}
-                  disabled={!(dirty && isValid)}
+                  disabled={!(dirty && isValid && !isLoading)}
                 >
                   Sign In
                 </button>
+                {error && <p className="mt-4 text-center">{error}</p>}
               </Form>
             </div>
           </div>

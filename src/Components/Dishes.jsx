@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CartState } from '../Context/Context'
+import { useAuthContext } from '../Hooks/useAuthContext'
 
 const Dishes = () => {
+    const [dishes, setDishes] = useState(null)
+    const {user} = useAuthContext()
     const { 
         state: { products, cart },
         dispatch, 
     } = CartState();
+
+    useEffect(() => {
+        const fetchDishes = async () => {
+            const response = await fetch('/api/homely', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            const json = await response.json()
+
+            if(response.ok) {
+                setDishes(json)
+            }
+        }
+
+        if(user) {
+            fetchDishes()
+        }
+    }, [user])
 
   return (
     <>
@@ -14,8 +36,8 @@ const Dishes = () => {
             <p className="text-center text-lg">Check out recomended dishes of your choice</p>
 
             <div className="grid lg:grid-cols-3 my-10">
-                {products.map( (dish, i) => (
-                    <div className="flex flex-col items-center gap-5 border border-b-orange-500 lg:border-primary-500 py-10 lg:p-10" key={dish.id}>
+                {dishes && dishes.map( (dish, i) => (
+                    <div className="flex flex-col items-center gap-5 border border-b-orange-500 lg:border-primary-500 py-10 lg:p-10" key={dish._id}>
                         <img src={dish.img} alt="" className='w-[250px]' />
                         <p className="font-semibold text-2xl lg:text-2xl">{dish.name}</p>
 
