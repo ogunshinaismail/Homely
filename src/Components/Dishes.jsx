@@ -12,7 +12,7 @@ const Dishes = () => {
 
     useEffect(() => {
         const fetchDishes = async () => {
-            const response = await fetch('/api/homely', {
+            const response = await fetch('http://localhost:4000/api/homely', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
