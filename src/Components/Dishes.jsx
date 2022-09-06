@@ -38,7 +38,7 @@ const Dishes = () => {
             <div className="grid lg:grid-cols-3 my-10">
                 {dishes && dishes.map( (dish, i) => (
                     <div className="flex flex-col items-center gap-5 border border-b-orange-500 lg:border-primary-500 py-10 lg:p-10" key={dish._id}>
-                        <img src={dish.img} alt="" className='w-[250px]' />
+                        <img src={dish.img} alt="" className='w-[250px] h-[250px] rounded-full' />
                         <p className="font-semibold text-2xl lg:text-2xl">{dish.name}</p>
 
                         <div className="flex items-center gap-32 lg:gap-10">
