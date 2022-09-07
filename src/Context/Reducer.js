@@ -15,7 +15,7 @@ export const cartReducer = (state, action) => {
                     ...state, 
                     cart: state.cart.filter( c => c.id === action.payload.id?c.qty=action.payload.qty:c.qty)
                 };
-        case "ON_DELETE_ALL_ITEMS_FROM_CART":
+        case "CLEAR_CART":
             return {
                 ...state,
                 cart: []

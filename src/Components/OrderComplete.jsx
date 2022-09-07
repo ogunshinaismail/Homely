@@ -20,7 +20,7 @@ const OrderComplete = ({setShowOderComplete, setShowCart}) => {
                     type="button"
                     onClick={() => {
                         dispatch({
-                            type: "ON_DELETE_ALL_ITEMS_FROM_CART",
+                            type: "CLEAR_CART",
                             payload: cart
                         })
                         setShowOderComplete(false)

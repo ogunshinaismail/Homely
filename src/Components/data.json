@@ -1,0 +1,22 @@
+{
+    "dishes" : [
+        {
+            "id": 1,
+            "name": "Yam and egg sauce",
+            "img": "./Images/yam-egg.svg",
+            "price": 1500.00
+        },
+        {
+            "id": 2,
+            "name": "Spag and pepper sauce",
+            "img": "./Images/spaghetti.svg",
+            "price": 1200.00
+        },
+        {
+            "id": 3,
+            "name": "Porridge beans",
+            "img": "./Images/porridge-beans.svg",
+            "price": 1400.00
+        }
+    ]
+}
