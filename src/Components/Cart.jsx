@@ -25,7 +25,7 @@ const Cart = ({setShowCart}) => {
                             {cart.map(item => (
                                 <div className="w-full relative p-6 flex items-center gap-10 justify-between border-b last:border-none border-primary-500" key={item.id}>
                                     <div className="flex items-center gap-5">
-                                        <img src={item.img} alt="" className='w-[70px] lg:w-[150px]' />
+                                        <img src={item.img} alt="" className='w-[70px] h-[70px] rounded-full lg:w-[150px] lg:h-[150px]' />
                                         <div className="flex flex-col gap-3">
                                             <h1 className="font-medium lg:text-2xl">{item.name}</h1>
                                             <div className="flex items-center gap-3 lg:gap-8">
