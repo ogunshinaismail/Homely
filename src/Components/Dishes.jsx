@@ -1,33 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { CartState } from '../Context/Context'
-import { useAuthContext } from '../Hooks/useAuthContext'
+// import { useAuthContext } from '../Hooks/useAuthContext'
 
 const Dishes = () => {
-    const [dishes, setDishes] = useState(null)
-    const {user} = useAuthContext()
+    // const [dishes, setDishes] = useState(null)
+    // const {user} = useAuthContext()
     const { 
         state: { products, cart },
         dispatch, 
     } = CartState();
-
-    useEffect(() => {
-        const fetchDishes = async () => {
-            const response = await fetch('https://backend-two-beta.vercel.app/api/homely', {
-                headers: {
-                    'Authorization': `Bearer ${user.token}`
-                }
-            })
-            const json = await response.json()
-
-            if(response.ok) {
-                setDishes(json)
-            }
-        }
-
-        if(user) {
-            fetchDishes()
-        }
-    }, [user])
 
   return (
     <div id='dishes'>
@@ -36,7 +17,7 @@ const Dishes = () => {
             <p className="text-center text-lg">Check out recomended dishes of your choice</p>
 
             <div className="grid lg:grid-cols-3 my-10">
-                {dishes && dishes.map( (dish, i) => (
+                {products && products.map( (dish, i) => (
                     <div className="flex flex-col items-center gap-5 border border-b-orange-500 lg:border-primary-500 py-10 lg:p-10" key={dish._id}>
                         <img src={dish.img} alt="" className='w-[250px] h-[250px] rounded-full' />
                         <p className="font-semibold text-2xl lg:text-2xl">{dish.name}</p>

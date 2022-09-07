@@ -1,11 +1,15 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState, useEffect } from "react";
 import { YamEgg, Spaghetti, Beans } from '../Assets'
 import { cartReducer } from "./Reducer";
+import { useAuthContext } from "../Hooks/useAuthContext";
 
 const Cart = createContext();
 
 const Context = ({children}) => {
-    const dishes = [
+    const [dishes, setDishes] = useState(null)
+    const {user} = useAuthContext()
+
+    const dishesr = [
         {
             "id": 1,
             "name": "Yam and egg sauce",
@@ -44,8 +48,31 @@ const Context = ({children}) => {
         },
     ]
 
+    useEffect(() => {
+        const fetchDishes = async () => {
+            const response = await fetch('https://backend-two-beta.vercel.app/api/homely', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            const json = await response.json()
+
+            if(response.ok) {
+                setDishes(json)
+            }
+        }
+
+        if(user) {
+            fetchDishes()
+        }
+    }, [user])
+
+    console.log(dishes)
+
+    // Assign dishes to products below and see what it's showing 
+    
     const [state, dispatch] = useReducer(cartReducer, {
-        products: dishes,
+        products: dishesr,
         cart: []
     })
 
