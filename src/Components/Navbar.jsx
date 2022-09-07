@@ -109,7 +109,7 @@ const Navbar = () => {
                   <img
                     src={User}
                     alt="user"
-                    className="h-10 w-10 ml-8 cursor-pointer"
+                    className="h-10 w-10 cursor-pointer"
                     onClick={() => setNavLogout(!navlogOut)}
                   />
                   {navlogOut && (
@@ -137,7 +137,7 @@ const Navbar = () => {
               {!user && (
                 <li className="nav-item">
                   <Link className="text-black hover:opacity-75" to={"/signin"}>
-                    <button className="lg:ml-10 ml-2 font-medium lg:bg-primary-600 lg:py-2 lg:px-6 lg:rounded lg:text-white">
+                    <button className="font-medium lg:bg-primary-600 lg:py-2 lg:px-6 lg:rounded lg:text-white">
                       Login
                     </button>
                   </Link>
@@ -146,7 +146,7 @@ const Navbar = () => {
               {!user && (
                 <li className="nav-item">
                   <Link className="text-black hover:opacity-75" to={"/signup"}>
-                    <button className="ml-2 font-medium lg:bg-primary-600 lg:py-2 lg:px-6 rounded lg:text-white">
+                    <button className="font-medium lg:bg-primary-600 lg:py-2 lg:px-6 rounded lg:text-white">
                       Register
                     </button>
                   </Link>
