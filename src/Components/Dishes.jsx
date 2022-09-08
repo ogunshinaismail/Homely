@@ -25,6 +25,7 @@ const Dishes = () => {
                         <div className="flex items-center gap-32 lg:gap-10">
                             <p className='font-medium text-2xl'>₦{dish.price}</p>
                             <div className="flex items-center">
+
                                 
                                 {cart.some( (p) => p.id === dish.id) ? (
                                         <button 

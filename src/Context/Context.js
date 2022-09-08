@@ -72,9 +72,11 @@ const Context = ({children}) => {
     // Assign dishes to products below and see what it's showing 
     
     const [state, dispatch] = useReducer(cartReducer, {
-        products: dishesr,
+        products: dishes,
         cart: []
     })
+
+    console.log(state.products)
 
     return <Cart.Provider value={{state, dispatch}}>{children}</Cart.Provider>
 }
