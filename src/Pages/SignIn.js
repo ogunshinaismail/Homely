@@ -3,6 +3,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import useInput from "../Hooks/FormikInput";
 import { useLogin } from "../Hooks/useLogin";
+import { Link } from "react-router-dom";
 
 const Signin = () => {
   const emailInput = useInput({
@@ -27,7 +28,7 @@ const Signin = () => {
       .min(4, "Password is too short - should be 4 chars min"),
   });
 
-  const {login, error, isLoading} = useLogin()
+  const { login, error, isLoading } = useLogin();
 
   const initialValues = {
     email: "",
@@ -39,8 +40,7 @@ const Signin = () => {
       initialValues={initialValues}
       validationSchema={signInSchema}
       onSubmit={(values) => {
-        console.log(values);
-        login(values.email, values.password)
+        login(values.email, values.password);
       }}
     >
       {(formik) => {
@@ -97,7 +97,19 @@ const Signin = () => {
                 >
                   Sign In
                 </button>
-                {error && <p className="mt-4 text-center">{error}</p>}
+                <div className="text-center flex justify-center mt-4">
+                  <p className="text-center mr-1 font-medium">
+                    Not registered yet?
+                  </p>
+                  <Link
+                    to={"/signup"}
+                    className="text-violet-700 font-semibold"
+                  >
+                    Create an Account
+                  </Link>
+                </div>
+
+                {error && <p className="mt-2 text-center">{error}</p>}
               </Form>
             </div>
           </div>
