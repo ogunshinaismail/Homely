@@ -3,6 +3,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import useInput from "../Hooks/FormikInput";
 import { useSignup } from "../Hooks/useSignup";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const usernameInput = useInput({
@@ -27,7 +28,7 @@ const SignUp = () => {
     className: `w-full border-0 px-3 text-xl rounded-lg h-full outline-none`,
   });
 
-  const {signup, error, isLoading} = useSignup()
+  const { signup, error, isLoading } = useSignup();
 
   const signUpSchema = yup.object().shape({
     name: yup
@@ -54,8 +55,7 @@ const SignUp = () => {
       validationSchema={signUpSchema}
       onSubmit={(values) => {
         console.log(values.name);
-        signup(values.name, values.email, values.password)
-
+        signup(values.name, values.email, values.password);
       }}
     >
       {(formik) => {
@@ -125,6 +125,17 @@ const SignUp = () => {
                 >
                   Sign Up
                 </button>
+                <div className="text-center flex justify-center  mt-4">
+                  <p className="text-center mr-1 font-medium">
+                    Already have an account?
+                  </p>
+                  <Link
+                    to={"/signin"}
+                    className="text-violet-700 font-semibold"
+                  >
+                    Signin
+                  </Link>
+                </div>
                 {error && <p className="mt-4 text-center">{error}</p>}
               </Form>
             </div>

@@ -113,9 +113,13 @@ const Navbar = () => {
                     onClick={() => setNavLogout(!navlogOut)}
                   />
                   {navlogOut && (
-                    <div className="text-center w-28 h-10 bg-white absolute mt-4 shadow-md rounded flex justify-center items-center">
+                    <div className="text-center -ml-10 w-44 py-4 bg-white absolute mt-4 shadow-md rounded flex flex-col justify-center items-center">
+                      <p className="text-center flex justify-center items-center text-black mb-2">
+                        {user.email}
+                      </p>
+                      <hr className="w-full bg-black" />
                       <p
-                        className="text-center flex justify-center items-center cursor-pointer text-black"
+                        className="text-center flex justify-center items-center cursor-pointer text-black mt-2"
                         onClick={handleClick}
                       >
                         Logout
@@ -125,13 +129,11 @@ const Navbar = () => {
                 </li>
               )}
               {user && (
-                <li className="nav-item float-right lg:hidden block mr-8">
-                  <p
-                    className="text-lg text-black cursor-pointer"
-                    onClick={handleClick}
-                  >
-                    Logout
-                  </p>
+                <li
+                  className="nav-item float-right lg:hidden block mr-8"
+                  onClick={handleClick}
+                >
+                  Logout
                 </li>
               )}
               {!user && (
