@@ -130,7 +130,7 @@ const Navbar = () => {
               )}
               {user && (
                 <li
-                  className="nav-item float-right lg:hidden block mr-8"
+                  className="nav-item float-right lg:hidden block mr-8 cursor-pointer"
                   onClick={handleClick}
                 >
                   Logout

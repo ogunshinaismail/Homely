@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CartState } from "../Context/Context";
 import { useAuthContext } from "../Hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Dishes = () => {
   const [dishes, setDishes] = useState(null);
@@ -9,16 +10,17 @@ const Dishes = () => {
     state: { products, cart },
     dispatch,
   } = CartState();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchDishes = async () => {
       const response = await fetch(
         "https://backend-two-beta.vercel.app/api/homely",
-        {
+      /*  {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
-        }
+        } */
       );
       const json = await response.json();
 
@@ -27,10 +29,19 @@ const Dishes = () => {
       }
     };
 
-    if (user) {
       fetchDishes();
+  }, []);
+
+  const handleActiveUser = (dish) => {
+    if (user) {
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: dish,
+      });
+    } else {
+      navigate("/signin")
     }
-  }, [user]);
+  }
 
   return (
     <div id="dishes">
@@ -76,12 +87,7 @@ const Dishes = () => {
                     ) : (
                       <button
                         className="bg-primary-600 px-8 md:px-4 py-2 text-white rounded-lg"
-                        onClick={() => {
-                          dispatch({
-                            type: "ADD_TO_CART",
-                            payload: dish,
-                          });
-                        }}
+                        onClick={() => {handleActiveUser(dish)}}
                       >
                         + Add
                       </button>

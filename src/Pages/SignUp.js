@@ -125,7 +125,7 @@ const SignUp = () => {
                 >
                   Sign Up
                 </button>
-                <div className="text-center flex justify-center  mt-4">
+                <div className="text-center flex md:flex-row flex-col justify-center  mt-4">
                   <p className="text-center mr-1 font-medium">
                     Already have an account?
                   </p>

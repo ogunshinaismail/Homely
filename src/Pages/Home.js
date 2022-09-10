@@ -19,7 +19,7 @@ const Home = () => {
         <Hero />
         <Counter />
         <WhyChooseUs />
-        {user && <Dishes />}
+         <Dishes />
         <AboutUs />
         <GetOurApp />
         <Testimonials />

@@ -43,7 +43,7 @@ const Cart = ({setShowCart}) => {
                                                             dispatch({
                                                                 type: "CHANGE_CART_QTY",
                                                                 payload: {
-                                                                    id: item.id,
+                                                                    id: item._id,
                                                                     qty: e.target.value,
                                                                 },
                                                             })

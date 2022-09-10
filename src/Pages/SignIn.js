@@ -49,6 +49,7 @@ const Signin = () => {
           <div className="w-full h-screen signup-bg flex items-center justify-center">
             <div className="md:w-96 w-11/12 bg-white rounded py-8 md:px-7 px-4">
               <h3 className="text-2xl text-center font-bold">Login</h3>
+              <h5 className="text-center text-xl">Please Login to continue</h5>
               <Form className="w-full mt-7">
                 <div className="w-full px-3 mb-5">
                   <div
@@ -97,7 +98,7 @@ const Signin = () => {
                 >
                   Sign In
                 </button>
-                <div className="text-center flex justify-center mt-4">
+                <div className="text-center flex md:flex-row flex-col justify-center mt-4">
                   <p className="text-center mr-1 font-medium">
                     Not registered yet?
                   </p>
