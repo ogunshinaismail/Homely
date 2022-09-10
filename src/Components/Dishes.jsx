@@ -103,5 +103,3 @@ const Dishes = () => {
 };
 
 export default Dishes;
-
-// <button className='bg-primary-600 px-8 py-2 text-white rounded-lg' onClick={() => addToCart(dish.id, dish.name, dish.img, dish.price, dish.quantity)}> + Add</button>
