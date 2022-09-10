@@ -23,7 +23,7 @@ const Cart = ({setShowCart}) => {
                     {cart.length > 0 ? (
                         <div className="relative overflow-y-scroll scroll-smooth max-h-72 px-5 my-5">
                             {cart.map(item => (
-                                <div className="w-full relative p-6 flex items-center gap-10 justify-between border-b last:border-none border-primary-500" key={item.id}>
+                                <div className="w-full relative p-6 flex items-center gap-10 justify-between border-b last:border-none border-primary-500" key={item._id}>
                                     <div className="flex items-center gap-5">
                                         <img src={item.img} alt="" className='w-[70px] h-[70px] rounded-full lg:w-[150px] lg:h-[150px]' />
                                         <div className="flex flex-col gap-3">

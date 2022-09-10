@@ -113,13 +113,13 @@ const Navbar = () => {
                     onClick={() => setNavLogout(!navlogOut)}
                   />
                   {navlogOut && (
-                    <div className="text-center -ml-10 w-44 py-4 bg-white absolute mt-4 shadow-md rounded flex flex-col justify-center items-center">
+                    <div className="text-center -ml-24 px-4 py-4 bg-white absolute mt-4 shadow-md rounded flex flex-col justify-center items-center">
                       <p className="text-center flex justify-center items-center text-black mb-2">
                         {user.email}
                       </p>
                       <hr className="w-full bg-black" />
                       <p
-                        className="text-center flex justify-center items-center cursor-pointer text-black mt-2"
+                        className="text-center flex justify-center items-center font-bold cursor-pointer text-black mt-2"
                         onClick={handleClick}
                       >
                         Logout

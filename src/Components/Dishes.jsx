@@ -7,7 +7,7 @@ const Dishes = () => {
   const [dishes, setDishes] = useState(null);
   const { user } = useAuthContext();
   const {
-    state: { products, cart },
+    state: { cart },
     dispatch,
   } = CartState();
   const navigate = useNavigate()
@@ -72,7 +72,7 @@ const Dishes = () => {
                 <div className="flex items-center gap-32 lg:gap-10">
                   <p className="font-medium text-2xl">₦{dish.price}</p>
                   <div className="flex items-center">
-                    {cart.some((p) => p._id == dish._id) ? (
+                    {cart.some((p) => p._id === dish._id) ? (
                       <button
                         className="bg-white border border-primary-600 px-2 md:px-4 py-2 text-primary-600 font-medium rounded-lg"
                         onClick={() => {
