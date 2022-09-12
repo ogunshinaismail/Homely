@@ -10,13 +10,13 @@ const Dishes = () => {
     state: { products, cart },
     dispatch,
   } = CartState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDishes = async () => {
       const response = await fetch(
-        "https://backend-two-beta.vercel.app/api/homely",
-      /*  {
+        "https://backend-two-beta.vercel.app/api/homely"
+        /*  {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -29,19 +29,85 @@ const Dishes = () => {
       }
     };
 
-      fetchDishes();
+    fetchDishes();
   }, []);
-
-  const handleActiveUser = (dish) => {
+  useEffect(() => {
     if (user) {
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: dish,
-      });
-    } else {
-      navigate("/signin")
+      const fetchCarts = async () => {
+        const response = await fetch(
+          "https://backend-two-beta.vercel.app/api/cart",
+          {
+            headers: { Authorization: `Bearer ${user.token}` },
+          }
+        );
+        const json = await response.json();
+
+        if (response.ok) {
+          dispatch({ type: "SET_TO_CART", payload: json });
+        }
+      };
+      fetchCarts();
     }
-  }
+  }, [dispatch, user]);
+
+  const handleActiveUser = async (dish) => {
+    if (user) {
+      const response = await fetch(
+        "https://backend-two-beta.vercel.app/api/cart",
+        {
+          method: "POST",
+          body: JSON.stringify(dish),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      const json = await response.json();
+
+      if (!response.ok) {
+        /* setError(json.error)
+      setEmptyFields(json.emptyFields) */
+      }
+      if (response.ok) {
+        /* setTitle('')
+      setLoad('')
+      setReps('')
+      setError(null)
+      setEmptyFields([]) */
+        dispatch({ type: "ADD_TO_CART", payload: json });
+      }
+    } else {
+      navigate("/signin");
+    }
+  };
+  const handleRemoveCart = async (dish) => {
+    if (user) {
+      const remove = cart.find((item) => item.name === dish.name);
+      const found = cart.find((obj) => {
+        return obj.name === dish.name;
+      });
+      console.log(found);
+      console.log(dish);
+
+      const response = await fetch(
+        "https://backend-two-beta.vercel.app/api/cart/" + remove._id,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "REMOVE_FROM_CART", payload: json });
+      }
+    } else {
+      navigate("/signin");
+    }
+  };
 
   return (
     <div id="dishes">
@@ -72,14 +138,11 @@ const Dishes = () => {
                 <div className="flex items-center gap-32 lg:gap-10">
                   <p className="font-medium text-2xl">₦{dish.price}</p>
                   <div className="flex items-center">
-                    {cart.some((p) => p._id == dish._id) ? (
+                    {cart.some((p) => p.name == dish.name) ? (
                       <button
                         className="bg-white border border-primary-600 px-2 md:px-4 py-2 text-primary-600 font-medium rounded-lg"
                         onClick={() => {
-                          dispatch({
-                            type: "REMOVE_FROM_CART",
-                            payload: dish,
-                          });
+                          handleRemoveCart(dish);
                         }}
                       >
                         - Remove
@@ -87,7 +150,9 @@ const Dishes = () => {
                     ) : (
                       <button
                         className="bg-primary-600 px-8 md:px-4 py-2 text-white rounded-lg"
-                        onClick={() => {handleActiveUser(dish)}}
+                        onClick={() => {
+                          handleActiveUser(dish);
+                        }}
                       >
                         + Add
                       </button>
