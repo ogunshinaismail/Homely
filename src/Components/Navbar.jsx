@@ -109,17 +109,17 @@ const Navbar = () => {
                   <img
                     src={User}
                     alt="user"
-                    className="h-10 w-10 ml-8 cursor-pointer"
+                    className="h-10 w-10 cursor-pointer"
                     onClick={() => setNavLogout(!navlogOut)}
                   />
                   {navlogOut && (
-                    <div className="text-center -ml-10 w-44 py-4 bg-white absolute mt-4 shadow-md rounded flex flex-col justify-center items-center">
+                    <div className="text-center -ml-24 px-4 py-4 bg-white absolute mt-4 shadow-md rounded flex flex-col justify-center items-center">
                       <p className="text-center flex justify-center items-center text-black mb-2">
                         {user.email}
                       </p>
                       <hr className="w-full bg-black" />
                       <p
-                        className="text-center flex justify-center items-center cursor-pointer text-black mt-2"
+                        className="text-center flex justify-center items-center font-bold cursor-pointer text-black mt-2"
                         onClick={handleClick}
                       >
                         Logout
@@ -139,7 +139,7 @@ const Navbar = () => {
               {!user && (
                 <li className="nav-item">
                   <Link className="text-black hover:opacity-75" to={"/signin"}>
-                    <button className="lg:ml-10 ml-2 font-medium lg:bg-primary-600 lg:py-2 lg:px-6 lg:rounded lg:text-white">
+                    <button className="font-medium lg:bg-primary-600 lg:py-2 lg:px-6 lg:rounded lg:text-white">
                       Login
                     </button>
                   </Link>
@@ -148,7 +148,7 @@ const Navbar = () => {
               {!user && (
                 <li className="nav-item">
                   <Link className="text-black hover:opacity-75" to={"/signup"}>
-                    <button className="ml-2 font-medium lg:bg-primary-600 lg:py-2 lg:px-6 rounded lg:text-white">
+                    <button className="font-medium lg:bg-primary-600 lg:py-2 lg:px-6 rounded lg:text-white">
                       Register
                     </button>
                   </Link>

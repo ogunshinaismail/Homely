@@ -21,52 +21,6 @@ const Cart = ({ setShowCart }) => {
     );
   }, [cart]);
 
-  const handleRemoveCart = async (item) => {
-    if (user) {
-      console.log(item._id);
-      const response = await fetch(
-        "https://backend-two-beta.vercel.app/api/cart/" + item._id,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        dispatch({ type: "REMOVE_FROM_CART", payload: json });
-      }
-    } else {
-      navigate("/signin");
-    }
-  };
-
-  const handleRemoveALLCart = async () => {
-    if (user) {
-      const remove = cart.find((item) => item.user_id);
-      console.log(remove);
-      const response = await fetch(
-        "https://backend-two-beta.vercel.app/api/cart/user/" + remove.user_id,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        dispatch({ type: "ON_DELETE_ALL_ITEMS_FROM_CART", payload: json });
-        setShowOderComplete(true);
-      }
-    } else {
-      navigate("/signin");
-    }
-  };
-
-  console.log(cart);
-
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-[#00000078]">
@@ -79,7 +33,7 @@ const Cart = ({ setShowCart }) => {
                 {cart.map((item) => (
                   <div
                     className="w-full relative p-6 flex items-center gap-10 justify-between border-b last:border-none border-primary-500"
-                    key={item._id}
+                    key={item.id}
                   >
                     <div className="flex items-center gap-5">
                       <img
@@ -121,7 +75,10 @@ const Cart = ({ setShowCart }) => {
                     <div className="flex items-end">
                       <button
                         onClick={() => {
-                          handleRemoveCart(item);
+                          dispatch({
+                            type: "REMOVE_FROM_CART",
+                            payload: item,
+                          });
                         }}
                       >
                         <img src={Trash} alt="" />

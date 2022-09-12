@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { HeroImg } from "../Assets";
 import { useAuthContext } from "../Hooks/useAuthContext";
 
@@ -11,8 +11,8 @@ const Hero = () => {
         <div className="w-11/12">
           {user && (
             <div className="py-4 block lg:hidden">
-              <h4 className="text-black-200 text-2xl mb-8 font-bold">
-                Welcome <span className="italic">{user.email}</span>
+              <h4 className="text-black-200 text-xl mb-8 font-medium">
+                Welcome <br></br> <span className="italic">{user.email}</span>
               </h4>
             </div>
           )}
