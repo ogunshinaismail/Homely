@@ -138,7 +138,7 @@ const Dishes = () => {
                 <div className="flex items-center gap-32 lg:gap-10">
                   <p className="font-medium text-2xl">₦{dish.price}</p>
                   <div className="flex items-center">
-                    {cart.some((p) => p._id == dish._id) ? (
+                    {cart.some((p) => p.name == dish.name) ? (
                       <button
                         className="bg-white border border-primary-600 px-2 md:px-4 py-2 text-primary-600 font-medium rounded-lg"
                         onClick={() => {
