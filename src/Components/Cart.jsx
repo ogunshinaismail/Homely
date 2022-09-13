@@ -82,11 +82,13 @@ const Cart = ({ setShowCart }) => {
                     key={item._id}
                   >
                     <div className="flex items-center gap-5">
+                    <div className="w-[70px] rounded-full lg:w-[150px] lg:h-[150px]">
                       <img
                         src={item.img}
                         alt=""
-                        className="w-[70px] lg:w-[150px]"
+                        className="w-[70px] h-[70px] rounded-full lg:w-[150px] lg:h-[150px]"
                       />
+                    </div>
                       <div className="flex flex-col gap-3">
                         <h1 className="font-medium lg:text-2xl">{item.name}</h1>
                         <div className="flex items-center gap-3 lg:gap-8">
