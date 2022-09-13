@@ -65,6 +65,12 @@ const Dishes = () => {
       );
       const json = await response.json();
 
+  // FOR SLICING THE FETCHED ARRAY BEFORE CLICKING THE SEE MORE
+
+  // const size = 3
+  // const dishesSlice = dishes.slice(0, size)
+
+  const handleActiveUser = (dish) => {
       if (!response.ok) {
         /* setError(json.error)
       setEmptyFields(json.emptyFields) */
@@ -109,6 +115,14 @@ const Dishes = () => {
     }
   };
 
+  const handleSeeMore = () => {
+    if (user) {
+      navigate("/dishes")
+    } else {
+      navigate("/signin")
+    }
+  }
+
   return (
     <div id="dishes">
       <div className="lg:w-10/12 mx-auto mt-24">
@@ -119,22 +133,23 @@ const Dishes = () => {
           Check out recomended dishes of your choice
         </p>
 
-        <div className="grid lg:grid-cols-3 my-10">
-          {dishes &&
-            dishes.map((dish, i) => (
-              <div
-                className="flex flex-col items-center gap-5 border border-b-orange-500 lg:border-primary-500 py-10 lg:p-10"
-                key={dish._id}
-              >
-                <img
-                  src={dish.img}
-                  alt=""
-                  className="w-[250px] h-[250px] rounded-full"
-                />
-                <p className="font-semibold text-2xl lg:text-2xl">
-                  {dish.name}
-                </p>
-
+        <div className="flex flex-col gap-9">
+          <div className="grid lg:grid-cols-3 my-10">
+            {dishes &&
+              dishes.map((dish, i) => (
+                <div
+                  className="flex flex-col items-center gap-5 border border-b-orange-500 lg:border-primary-500 py-10 lg:p-10"
+                  key={dish._id}
+                >
+                  <img
+                    src={dish.img}
+                    alt=""
+                    className="w-[250px] h-[250px] rounded-full"
+                  />
+                  <p className="font-semibold text-2xl lg:text-2xl">
+                    {dish.name}
+                  </p>
+                  
                 <div className="flex items-center gap-32 lg:gap-10">
                   <p className="font-medium text-2xl">₦{dish.price}</p>
                   <div className="flex items-center">
@@ -159,9 +174,17 @@ const Dishes = () => {
                     )}
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
+
+          <button 
+            className="bg-primary-600 py-2 px-8 text-white font-medium rounded-lg w-40 mx-auto hover:bg-white hover:text-primary-600 hover:border-2 hover:font-bold hover:border-primary-600"
+            onClick={() => handleSeeMore()}
+          >
+            See more
+          </button>
         </div>
+
       </div>
     </div>
   );
