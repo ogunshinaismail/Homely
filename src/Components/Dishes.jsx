@@ -128,7 +128,7 @@ const Dishes = () => {
   return (
     <div id="dishes">
       <div className="lg:w-10/12 mx-auto mt-24">
-      
+
         <h1 className="text-primary-500 text-center font-bold text-3xl">
           Our daily dishes
         </h1>
@@ -179,14 +179,16 @@ const Dishes = () => {
                   </div>
                 </div>
               ))}
-
+                
+              </div>
+              
                 <button 
-                  className="bg-primary-600 py-2 px-8 text-white font-medium rounded-lg w-40 mx-auto hover:bg-white hover:text-primary-600 hover:border-2 hover:font-bold hover:border-primary-600"
+                  className="bg-primary-600 py-2 px-8 text-white font-medium rounded-lg w-40 mt-2 mx-auto hover:bg-white hover:text-primary-600 hover:border-2 hover:font-bold hover:border-primary-600"
                   onClick={() => handleSeeMore()}
                 >
                   See more
                 </button>
-          </div>
+              
         </div>
 
       </div>
