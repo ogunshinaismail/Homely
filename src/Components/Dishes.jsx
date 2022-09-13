@@ -35,7 +35,7 @@ const Dishes = () => {
 
   // FOR SLICING THE FETCHED ARRAY BEFORE CLICKING THE SEE MORE
 
-  const size = 3
+  // const size = 3
   // const dishesSlice = dishes.slice(0, size)
 
   const handleActiveUser = (dish) => {
