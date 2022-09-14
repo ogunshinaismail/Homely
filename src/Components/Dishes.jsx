@@ -1,113 +1,32 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable eqeqeq */
+import React, { useEffect } from "react";
 import { CartState } from "../Context/Context";
 import { useAuthContext } from "../Hooks/useAuthContext";
-import { useNavigate } from "react-router-dom";
+import { ApiHandler } from "../Hooks/ApiHandler";
 
 const Dishes = () => {
-  const [dishes, setDishes] = useState(null);
   const { user } = useAuthContext();
   const {
     state: { cart },
     dispatch,
   } = CartState();
-  const navigate = useNavigate();
+  const {
+    fetchDishes,
+    dishes,
+    handleActiveUser,
+    handleRemoveDishFromCart,
+    fetchCarts,
+  } = ApiHandler();
 
   useEffect(() => {
-    const fetchDishes = async () => {
-      const response = await fetch(
-        "https://backend-two-beta.vercel.app/api/homely"
-        /*  {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        } */
-      );
-      const json = await response.json();
-
-      if (response.ok) {
-        setDishes(json);
-      }
-    };
-
     fetchDishes();
   }, []);
   useEffect(() => {
     if (user) {
-      const fetchCarts = async () => {
-        const response = await fetch(
-          "https://backend-two-beta.vercel.app/api/cart",
-          {
-            headers: { Authorization: `Bearer ${user.token}` },
-          }
-        );
-        const json = await response.json();
-
-        if (response.ok) {
-          dispatch({ type: "SET_TO_CART", payload: json });
-        }
-      };
       fetchCarts();
     }
   }, [dispatch, user]);
-
-  const handleActiveUser = async (dish) => {
-    if (user) {
-      const response = await fetch(
-        "https://backend-two-beta.vercel.app/api/cart",
-        {
-          method: "POST",
-          body: JSON.stringify(dish),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      const json = await response.json();
-
-      if (!response.ok) {
-        /* setError(json.error)
-      setEmptyFields(json.emptyFields) */
-      }
-      if (response.ok) {
-        /* setTitle('')
-      setLoad('')
-      setReps('')
-      setError(null)
-      setEmptyFields([]) */
-        dispatch({ type: "ADD_TO_CART", payload: json });
-      }
-    } else {
-      navigate("/signin");
-    }
-  };
-  const handleRemoveCart = async (dish) => {
-    if (user) {
-      const remove = cart.find((item) => item.name === dish.name);
-      const found = cart.find((obj) => {
-        return obj.name === dish.name;
-      });
-      console.log(found);
-      console.log(dish);
-
-      const response = await fetch(
-        "https://backend-two-beta.vercel.app/api/cart/" + remove._id,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        dispatch({ type: "REMOVE_FROM_CART", payload: json });
-      }
-    } else {
-      navigate("/signin");
-    }
-  };
 
   return (
     <div id="dishes">
@@ -142,7 +61,7 @@ const Dishes = () => {
                       <button
                         className="bg-white border border-primary-600 px-2 md:px-4 py-2 text-primary-600 font-medium rounded-lg"
                         onClick={() => {
-                          handleRemoveCart(dish);
+                          handleRemoveDishFromCart(dish);
                         }}
                       >
                         - Remove
