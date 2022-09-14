@@ -24,3 +24,4 @@ export { default as User } from "./Icons/user.svg";
 export { default as Done } from "./Icons/done.svg";
 export { default as SearchGrey } from "./Icons/search-grey.svg";
 export { default as SearchWhite } from "./Icons/search-white.svg";
+export { default as Love } from "./Icons/love.png";

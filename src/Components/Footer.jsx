@@ -1,7 +1,7 @@
 import React from 'react'
 import { Logo } from '../Assets'
 import { Link } from 'react-router-dom'
-import { Instagram, Twitter, Facebook } from '../Assets'
+import { Instagram, Twitter, Facebook, Love } from '../Assets'
 
 const Footer = () => {
   return (
@@ -11,7 +11,12 @@ const Footer = () => {
                 <div>
                     <img src={Logo} alt="" />
                     <p className='text-white w-10/12 md:w-8/12 mt-6 lg:w-full lg:mt-4 gap-2'>Solution for easy and flexible getting meals for the household.You can trust us anywhere through this platform</p>
-                    <p className='text-white mt-4 hidden lg:block'>©2022 Made with  by Ismail and Muiz</p>
+                    <div className="flex gap-2 mt-4">
+                        <p className='text-white hidden lg:block'>©2022 Made with</p>
+                        <img src={Love} alt="" className='w-4 hidden lg:block' />
+                        <p className='text-white hidden lg:block'>by Ismail and Muiz</p>
+                    </div>
+                    
                 </div>
                 <div className='lg:relative flex flex-col lg:items-center'>
                     <h1 className="text-3xl font-medium text-white lg:absolute lg:left-[6.7rem] ">About</h1>
@@ -31,7 +36,13 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <p className='text-center text-md text-white mt-16 block lg:hidden'>©2022 Made with  by Ismail and Muiz</p>
+
+            <div className="flex gap-2 mt-16 justify-center">
+                <p className='text-white block lg:hidden'>©2022 Made with</p>
+                <img src={Love} alt="" className='w-4 block lg:hidden' />
+                <p className='text-white block lg:hidden'>by Ismail and Muiz</p>
+            </div>
+
         </div>
     </>
   )
