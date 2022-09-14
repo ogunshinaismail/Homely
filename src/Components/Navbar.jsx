@@ -76,7 +76,7 @@ const Navbar = () => {
 
               {user && (
                 <li className="nav-item">
-                  <a className="text-black hover:opacity-75" href="#home">
+                  <a className="text-black hover:opacity-75" href="#dishes">
                     <span className="ml-2 font-medium">Our dishes</span>
                   </a>
                 </li>

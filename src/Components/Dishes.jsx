@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { CartState } from "../Context/Context";
 import { useAuthContext } from "../Hooks/useAuthContext";
 import { ApiHandler } from "../Hooks/ApiHandler";
+import { useNavigate } from "react-router-dom";
 
 const Dishes = () => {
   const { user } = useAuthContext();
@@ -11,6 +12,7 @@ const Dishes = () => {
     state: { cart },
     dispatch,
   } = CartState();
+  const navigate = useNavigate();
   const {
     fetchDishes,
     dishes,
@@ -29,6 +31,14 @@ const Dishes = () => {
       fetchCarts();
     }
   }, [dispatch, user]);
+
+  const handleSeeMore = () => {
+    if (user) {
+      navigate("/dishes")
+    } else {
+      navigate("/signin")
+    }
+  }
 
 
   return (
@@ -82,9 +92,20 @@ const Dishes = () => {
                     )}
                   </div>
                 </div>
+
               </div>
             ))}
         </div>
+
+      </div>
+
+      <div className="w-11/12 mx-auto flex justify-center">
+        <button 
+          className="bg-primary-600 py-2 px-8 text-white font-medium rounded-lg w-40 mx-auto hover:bg-white hover:text-primary-600 hover:border-2 hover:font-bold hover:border-primary-600"
+          onClick={() => handleSeeMore()}
+        >
+          See more
+        </button>
       </div>
     </div>
   );
