@@ -2,18 +2,13 @@ import React, { useEffect, useState } from "react";
 import { CartState } from "../Context/Context";
 import { Trash } from "../Assets";
 import OrderCOmplete from "./OrderComplete";
-import { useAuthContext } from "../Hooks/useAuthContext";
-import { useNavigate } from "react-router-dom";
+import { ApiHandler } from "../Hooks/ApiHandler";
 
 const Cart = ({ setShowCart }) => {
   const {
     state: { cart },
-    dispatch,
   } = CartState();
   const [total, setTotal] = useState();
-  const [showOderComplete, setShowOderComplete] = useState(false);
-  const { user } = useAuthContext();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setTotal(
@@ -21,51 +16,13 @@ const Cart = ({ setShowCart }) => {
     );
   }, [cart]);
 
-  const handleRemoveCart = async (item) => {
-    if (user) {
-      console.log(item._id);
-      const response = await fetch(
-        "https://backend-two-beta.vercel.app/api/cart/" + item._id,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        dispatch({ type: "REMOVE_FROM_CART", payload: json });
-      }
-    } else {
-      navigate("/signin");
-    }
-  };
-  
-  const handleRemoveALLCart = async () => {
-    if (user) {
-      const remove = cart.find((item) => item.user_id);
-      console.log(remove);
-      const response = await fetch(
-        "https://backend-two-beta.vercel.app/api/cart/user/" + remove.user_id,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      const json = await response.json();
-      if (response.ok) {
-        dispatch({ type: "ON_DELETE_ALL_ITEMS_FROM_CART", payload: json });
-        setShowOderComplete(true);
-      }
-    } else {
-      navigate("/signin");
-    }
-  };
-
-  console.log(cart);
+  const {
+    handleRemoveCart,
+    handleRemoveALLCart,
+    handleUpdateCartQty,
+    showOderComplete,
+    setShowOderComplete,
+  } = ApiHandler();
 
   return (
     <>
@@ -103,16 +60,7 @@ const Cart = ({ setShowCart }) => {
                               value={item.qty}
                               min="1"
                               onChange={(e) => {
-                                if (item.qty.value < 1) {
-                                  item.qty.value = 1;
-                                }
-                                dispatch({
-                                  type: "CHANGE_CART_QTY",
-                                  payload: {
-                                    id: item._id,
-                                    qty: e.target.value,
-                                  },
-                                });
+                                handleUpdateCartQty(e, item);
                               }}
                             />
                           </div>
