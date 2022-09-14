@@ -34,16 +34,18 @@ const Navbar = () => {
             </a>
 
             <div className="flex gap-2 items-center">
-              <button
-                className="bg-primary-600 flex items-center gap-2 py-1 px-5 rounded-lg outline-none lg:hidden"
-                onClick={() => setShowCart(true)}
-              >
-                <img src={CartIcon} alt="" />
-                <span className="text-white">Cart</span>
-                <div className="bg-pink-50 text-black font-bold py-1 px-3 rounded-full">
-                  {cart.length}
-                </div>
-              </button>
+              {user && (
+                <button
+                  className="bg-primary-600 flex items-center gap-2 py-1 px-5 rounded-lg outline-none lg:hidden"
+                  onClick={() => setShowCart(true)}
+                >
+                  <img src={CartIcon} alt="" />
+                  <span className="text-white">Cart</span>
+                  <div className="bg-pink-50 text-black font-bold py-1 px-3 rounded-full">
+                    {cart.length}
+                  </div>
+                </button>
+              )}
 
               <button
                 className="text-white cursor-pointer text-xl leading-none px-3 py-1 w-[60px] border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"

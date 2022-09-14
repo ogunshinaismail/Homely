@@ -190,5 +190,6 @@ export const ApiHandler = () => {
     fetchCarts,
     fetchDishes,
     dishes,
+    setDishes
   };
 };
