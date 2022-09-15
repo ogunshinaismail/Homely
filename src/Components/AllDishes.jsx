@@ -83,7 +83,7 @@ const AllDishes = () => {
         </form>
 
         <div>
-          <select className="border outline-primary-200 px-4 py-2 w-full rounded-lg" onChange={e => {setCat(e.target.value)}}>
+          <select className="border outline-primary-200 px-4 py-2.5 w-full rounded-lg" onChange={e => {setCat(e.target.value)}}>
             <option value="">Choose type of food</option>
             <option value="solid">Solid</option>
             <option value="light">Light</option>

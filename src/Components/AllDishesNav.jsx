@@ -23,7 +23,7 @@ const AllDishesNav = () => {
       };
       return (
         <>
-          <nav className="fixed top-0 w-full flex flex-wrap items-center justify-between py-3 bg-primary-50">
+          <nav className="fixed top-0 w-full flex flex-wrap items-center justify-between py-3 bg-primary-50 z-40">
             <div className="container w-11/12 lg:w-11/12 mx-auto flex flex-wrap items-center justify-between">
               <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                 <a
