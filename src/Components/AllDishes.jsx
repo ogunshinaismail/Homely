@@ -6,7 +6,7 @@ import { ApiHandler } from "../Hooks/ApiHandler";
 
 const AllDishes = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [cat, setCat] = useState(["solid", "ligh"])
+  const [cat, setCat] = useState("")
   const { user } = useAuthContext();
   const {
     state: { cart },
