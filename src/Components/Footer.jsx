@@ -40,7 +40,7 @@ const Footer = () => {
             <div className="flex gap-2 mt-16 justify-center">
                 <p className='text-white block lg:hidden'>©2022 Made with</p>
                 <img src={Love} alt="" className='w-4 block lg:hidden' />
-                <p className='text-white block lg:hidden'>by Ismail and Muiz</p>
+                <p className='text-white block lg:hidden'>by Ismail and Muhiz</p>
             </div>
 
         </div>
