@@ -6,6 +6,7 @@ import { ApiHandler } from "../Hooks/ApiHandler";
 
 const AllDishes = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [cat, setCat] = useState(["solid", "ligh"])
   const { user } = useAuthContext();
   const {
     state: { cart },
@@ -82,10 +83,10 @@ const AllDishes = () => {
         </form>
 
         <div>
-          <select className="border outline-primary-200 px-4 py-2 w-full rounded-lg">
-            <option>Choose type of food</option>
-            <option>Solid</option>
-            <option>Light</option>
+          <select className="border outline-primary-200 px-4 py-2 w-full rounded-lg" onChange={e => {setCat(e.target.value)}}>
+            <option value="">Choose type of food</option>
+            <option value="solid">Solid</option>
+            <option value="light">Light</option>
           </select>
         </div>
       </div>
@@ -93,12 +94,17 @@ const AllDishes = () => {
       <div className="grid lg:grid-cols-3 my-10">
         {dishes &&
           dishes
+            .filter((item) => {
+              if (cat === "") {
+                return item;
+              } else if (item.category === cat) {
+                return item;
+              }
+            })
             .filter((val) => {
               if (searchTerm === "") {
                 return val;
-              } else if (
-                val.name.toLowerCase().includes(searchTerm.toLowerCase())
-              ) {
+              } else if ( val.name.toLowerCase().includes(searchTerm.toLowerCase()) ) {
                 return val;
               }
             })

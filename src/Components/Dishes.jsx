@@ -25,6 +25,8 @@ const Dishes = () => {
     fetchDishes();
   }, []);
 
+  console.log(dishes);
+
   useEffect(() => {
     if (user) {
       fetchCarts();
